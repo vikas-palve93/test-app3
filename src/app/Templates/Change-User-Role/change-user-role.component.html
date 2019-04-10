@@ -1,0 +1,37 @@
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div>
+      <div class="modal-header">
+        <img id="changeUserRoleModel" alt="" src="../../../assets/Icons/close_icon/close icon 14x14.svg"
+          class="close pull-right" (click)="changeUserRoleModel.hide()" aria-label="Close">
+      </div>
+      <div class="modal-body" style="margin-top: -18px !important;">
+        <div id="dialog-sizes-name1" class="modal-title  custome-modal-header">
+          Change Role
+        </div>
+        <div class="modal-body-alignment">
+          <div class="image-box">
+            <div class="image-box-background" style="text-align: center">
+              <div *ngIf="currentUser" class="">
+                <img src="{{currentUser.profilePictureUrl}}" class="img-style" alt="">
+              </div>
+              <div *ngIf="currentUser" class="image-box-username text-wrap">
+                {{currentUser.name !== null ? currentUser.name : currentUser.email !== null ? currentUser.email : ''}}
+              </div>
+            </div>
+            <div>
+              <div id="selectRole" *ngIf="currentUser" class="">
+                <label class="profile-content">Select Role</label>
+                <ng-select id="country" class="mt5" [items]="roles" bindLabel="name" bindValue="value" name="name"
+                  [(ngModel)]="role"></ng-select>
+              </div>
+            </div>
+          </div>
+          <div class="custom-button">
+            <button type="button-primary" class="btn btn-black" (click)="changeRole(role)">Save Role</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

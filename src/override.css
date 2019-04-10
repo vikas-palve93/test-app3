@@ -1,0 +1,578 @@
+.container-fluid {
+  padding-bottom: 50px !important;
+  background-color: #FFFFFF !important;
+}
+.btn {
+  width: 100% !important;
+  padding: 0 0 !important;
+}
+
+#toast-container > div {
+  opacity:1;
+}
+
+.toast-message {
+  width: 200px !important;
+}
+
+.toast-close-button {
+  position: relative;
+  right: -0.3em;
+  top: -0.3em;
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-shadow: 0 1px 0 #ffffff;
+  /* opacity: 0.8; */
+}
+
+.toast-close-button:hover, .toast-close-button:focus {
+  color: #ffffff !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+}
+ 
+.toast-container .toast {
+  padding: 20px 20px 20px 65px !important;
+  width: 310px !important;
+}
+.toast-container .toast:hover {
+  box-shadow: 0 0 12px #ffffff;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.toast-info {
+  background-image: url("../src/assets/Icons/toastr_info.svg");
+  background-color:#1D2951 !important;
+}
+
+.toast-error {
+  background-image: url("../src/assets/Icons/toastr_error.svg");
+  background-color: #AB0101 !important;
+}
+
+.toast-success {
+  background-image: url("../src/assets/Icons/toastr_success.svg");
+  background-color: #3DA5D9 !important;
+}
+
+.toast-container.toast-top-center .toast,
+.toast-container.toast-bottom-center .toast {
+  width: 300px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+  
+.toast-container.toast-top-full-width .toast,
+.toast-container.toast-bottom-full-width .toast {
+  width: 96% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.toast {
+  background-color: #030303 !important;
+  pointer-events: auto !important;
+}
+  
+.toast-warning {
+  background-color: #FBF7DB !important;
+}  
+
+
+button:focus,
+input:focus,
+img:focus,
+.input-field:focus {
+  outline: none !important;  
+}
+
+a:hover {
+  color: #9B9B9B !important;
+  text-decoration: none;
+}
+
+input[type="checkbox"] {
+  height: 18px !important;
+  width: 18px !important;
+  margin: 1px;
+}
+
+label {
+  margin: 0 !important;
+}
+
+.ngx-datepicker-container .ngx-datepicker-input {
+  width: 100% !important;
+}
+
+.ngx-datepicker-container  .ngx-datepicker-calendar-container  {
+  width: 256px !important;
+  z-index: 9999;
+}
+
+.ngx-datepicker-container  .ngx-datepicker-calendar-container  
+.main-calendar-container  .main-calendar-days  .day-unit , 
+.ngx-datepicker-container  .ngx-datepicker-calendar-container  
+.main-calendar-container  .main-calendar-days  .year-unit , 
+.ngx-datepicker-container  .ngx-datepicker-calendar-container  
+.main-calendar-container  .main-calendar-years  .day-unit , 
+.ngx-datepicker-container  .ngx-datepicker-calendar-container  
+.main-calendar-container  .main-calendar-years  .year-unit  {
+  height: 30px !important;
+}
+
+.btn:focus {
+  box-shadow: none !important;
+}
+
+.ngx-datepicker-container  .ngx-datepicker-input  {
+  background: url("./assets/Icons/calender.svg") no-repeat !important;
+  background-position: 96% 11px !important;
+  border-bottom: 1px solid #D8D8D8 !important;
+  border-radius: 5px;
+  padding: 8px 7px !important;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  padding: 0px !important; 
+  border: 1px solid #D8D8D8 !important;
+  border-radius: 4px !important;
+  box-shadow: 4px 4px 35px rgba(0, 0, 0, 0.15) !important;
+}
+
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-days .day-unit , 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-days .year-unit , 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-years .day-unit , 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-years .year-unit  {
+  color: #5B5B5B !important;
+}
+
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-days .day-unit.is-selected , 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-days .year-unit.is-selected , 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-years .day-unit.is-selected , 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-years .year-unit.is-selected  {
+  background: #3DA5D9 !important;
+  color: #FFFFFF !important;
+}
+
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-days .day-unit.is-today , 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-days .day-unit :hover, 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-days .year-unit.is-today , 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-days .year-unit :hover, 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-years .day-unit.is-today , 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-years .day-unit :hover, 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-years .year-unit.is-today , 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-years .year-unit :hover {
+  border: 1px solid #3DA5D9 !important;
+  background: none !important;
+  color: #5B5B5B !important;
+  box-sizing: border-box !important;
+}
+
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-days .day-unit.is-prev-month , 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-days .year-unit.is-prev-month , 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-years .day-unit.is-prev-month , 
+.ngx-datepicker-container .ngx-datepicker-calendar-container  
+.main-calendar-container .main-calendar-years .year-unit.is-prev-month  {
+  color: #D8D8D8 !important;
+}
+
+/** Topbar CSS */
+#mytab .nav-tabs > a {
+  border-radius: 0;
+  border: 0;
+}
+
+#mytab .nav-tabs > a:hover {
+  background-color: #f2f2f2;
+}
+
+#mytab .active {
+  border-radius: 0;
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+#mytab .tab-pane {
+  color: #333;
+  background-color: #f2f2f2;
+  padding: 15px;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+  color: #1D2951 !important;
+  line-height: 26px !important;
+  font-size: 18px !important;
+  letter-spacing: 0.17px !important;
+  font-weight: 600 !important;
+  border: none!important;
+}
+.nav-tabs .a:hover {
+  color: #1D2951 !important;
+  text-decoration: none;
+}
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+  border: none !important;
+}
+
+.nav-tabs .nav-link {
+  cursor: pointer;
+  border: none !important;
+}
+.nav-link:hover, .nav-link:focus {
+  outline: none !important;
+}
+
+/* For progress bar on dashboard */
+
+.progress .progress-value {
+  line-height: 110px !important;
+}
+
+.dropdown-menu:before {
+  content: '';
+  display: inline-block;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid #ccc;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: -12px;
+  left: 86.3%  !important;
+}
+
+.dropdown-menu:after {
+  content: '';
+  display: inline-block;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-bottom: 11px solid #F4F6FF;
+  position: absolute;
+  top: -11px;
+  left: 86.6% !important;
+}
+
+hr {
+  margin-top: 0rem !important;
+  margin-bottom: 0rem !important;
+}
+
+.navbar {
+  padding: 0.5rem 1.9rem !important;
+}
+
+/*sort table css */
+
+.table {
+  background-color: #FFFFFF !important;
+  width: inherit !important; 
+}
+.table td {
+  padding: 20px 20px;
+  border-top: none !important;
+}
+.table th {
+  padding: 10px 20px;
+  border-top: none !important;
+  border-bottom: 1px solid #5B5B5B !important;
+}
+.table-striped tbody tr:nth-of-type(odd),
+.table-striped tbody tr {
+  background-color: #FFFFFF !important;
+  border-bottom: 1px solid #D8D8D8 !important;
+}
+
+.tooltip[_nghost-c4] {
+  width: 150px !important;
+}
+  
+.tooltip-inner {
+  max-width: none !important;
+  min-width: 250px !important;
+}
+
+#projectdashboard .tooltip {
+  top: -19px !important;
+}
+
+#branchListPopover .tooltip[_nghost-c12] {
+  max-width: 260px !important;
+  top: 82px !important;
+}
+
+@media screen and (max-width: 1024px) {  
+  #duplication .tooltip {
+    top: -19px !important;
+    left: -112px !important;
+    max-width: 263px !important;
+}
+}
+
+@media screen and (min-width: 1025px) {  
+  #duplication .tooltip {
+    top: -19px !important;
+    left: -79px !important;
+    max-width: 263px !important;
+}
+}
+
+@media screen and (max-width: 768px) {  
+  #duplication .tooltip {
+    top: -19px !important;
+    left: -71px !important;
+    max-width: 263px !important;
+}
+}
+
+
+
+
+/** Css for duplication popover*/
+#duplication .popover-body {
+  min-width: 275px !important;
+  padding: 10px 25px 20px 25px !important;
+  line-height: 0px !important;
+}
+
+#duplication .popover {
+  max-width: none !important;
+  min-width: 335px !important;  
+}
+
+#duplication .popover-header {
+  padding: 20px 0px 0px 25px !important;
+  margin-bottom: none !important;
+  background-color: #fff !important;
+  border-bottom: none !important;
+  border-top-left-radius: none !important;
+  border-top-right-radius: none !important;
+  line-height: 24px !important;
+  font-size: 14px !important;
+  letter-spacing: 0.17px !important;
+  color: #24292A !important ;
+}
+
+/* Popover css for projects. */
+#projectBranch .arrow {
+  left: 85% !important;
+  margin-left: unset;
+}
+
+#projectBranch .popover-body {
+  min-width: none !important; 
+  padding: 0px !important;
+  line-height: 0px !important;
+}
+
+#projectBranch .popover {
+  top: 116px !important;
+  left: 47px !important;
+  max-width: 202px !important;
+  min-width: 202px !important;
+}
+
+/** Popover CSS end*/
+
+
+.form-control {
+  height: 40px !important;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #24292A !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+.navbar-brand {
+  margin-right: 60px !important;
+}
+
+.dropdown-divider {
+  margin: auto !important;
+  border-bottom: 1px solid #D8D8D8 !important;
+}
+
+
+/**All overrided class of modal popup strats here */
+
+.modal-header {
+  margin: 25px 25px 0px 0px !important;
+  border-bottom: none !important;
+}
+
+.modal-body {
+  padding: 0px 25px 25px 25px !important;
+}
+/**All overrided class of modal popup ends here */
+
+h2, .h2 {
+  font-size: 22px !important;
+  line-height: 32px !important;
+}
+
+pre {
+  overflow: visible !important;
+}
+
+.ng-select.ng-select-single .ng-select-container {
+  display: grid !important;
+  height: 50px !important;
+  width: 100% !important;
+  padding: 18px 15px !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  color: #24292A !important;
+  background-color: #fff !important;
+  border: none !important;
+  border-bottom: 1px solid #D8D8D8 !important;
+  border-radius: 0 !important;
+}
+
+.ng-select .ng-clear-wrapper .ng-clear {
+  display: none !important;
+}
+
+.ng-select .ng-select-container:after {
+  border-bottom: none !important;
+}
+
+.ng-select .ng-select-container .ng-value-container {
+  padding-left: 0px !important;
+  border-top: none !important;
+}
+
+.ng-select.ng-select-single .ng-select-container .ng-arrow-wrapper {
+  bottom: 3px !important;
+  left: 47% !important;
+}
+
+.ng-select:focus {
+  outline: none !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  padding: 15px 25px !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option .ng-option-label {
+  line-height: 24px !important;
+  font-size: 16px !important;
+  letter-spacing: 0.17px !important;
+  color: #24292A !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected,
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  background: #F4F6FF !important;
+  border-radius: 3px !important;
+}
+
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+  padding-left: 5px !important;
+}
+
+.ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container{
+  border: none !important;
+  border-bottom: 1px solid #1D2951 !important;
+  box-shadow: none !important;
+}
+
+
+.spinner img {
+  position: fixed !important;
+  padding: 0px !important;
+  top: 45% !important; 
+  left: 47% !important; 
+  z-index: 10 !important; 
+  background: #000 !important; 
+  opacity: 1 !important; 
+  transition: opacity 0.3s linear !important; 
+}
+
+.spinner { 
+  position: fixed !important; 
+  padding: 0px !important; 
+  top: 0 !important; 
+  left: 0 !important; 
+  height: 100% !important; 
+  width: 100% !important; 
+  z-index: 9998 !important; 
+  background: #fff !important; 
+  opacity: 0.9 !important; 
+  transition: opacity 0.3s linear !important;
+
+ }
+.downBtn{
+  width: 14px;
+  position: absolute;
+  top: 24px;
+  right: 2%;
+  opacity: 0.5;
+  z-index: 100;
+}
+@media screen and (min-width: 992px) {  
+    .modal-lg {
+      max-width: 600px !important;
+  }
+
+}
+/* 
+image-cropper {
+  background: black !important;
+  padding: 0 !important;
+}
+
+image-cropper div {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+}
+
+.cropper div {
+  overflow: none !important;
+}
+
+div img.source-image {
+  max-width: none !important;
+  max-height: none !important;
+  height: 300px !important;
+  overflow:hidden;
+}
+ */
+#filecode .tooltip {
+  width: 250px !important;
+  left: 15px !important;
+}
+
+.mat-radio-outer-circle {
+  height: 15px !important;
+  left: -1px !important;
+  top: 3px !important;
+  width: 15px !important;
+}

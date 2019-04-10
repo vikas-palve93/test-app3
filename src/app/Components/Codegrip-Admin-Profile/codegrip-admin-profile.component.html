@@ -1,0 +1,107 @@
+<app-navbar></app-navbar>
+<div class="topbar-bg-color">
+  <div>
+    <div class="nav nav-tabs ml20 pt15" id="nav-tab" role="tablist" style="border: none; ">
+      <div class="nav-item nav-link tab-title" style="box-shadow: none" id="organization" routerLink="/admin/profile"
+        routerLinkActive="active">Profile</div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="main-card-box text-align-left">
+      <div class="row">
+        <div class="col-md-3 mt30 text-align-center">
+          <div class="username mb10">{{name}}</div>
+          <div class="image-select-container">
+            <img src="{{adminData.profilePictureUrl}}" alt="" class="profile-icon image" height="180px" width="180px"
+              style="cursor: unset">
+          </div>
+        </div>
+        <div class="col-md-8">
+          <form name="userForm" id="userForm" #userForm="ngForm"
+            (ngSubmit)="!adminData.passError&& !errordata.isErrorData && userForm.valid && updateAdminProfile()">
+            <div class="row">
+              <div class="col-md-6 col-12 mt30">
+                <label class="profile-content">Name</label>
+                <input type="text" class="mt5 custom-empty-input-box" (keypress)="characterOnly($event)"
+                  [(ngModel)]="adminData.name" #userName="ngModel" name="userName" pattern="[a-zA-Z/s ]*" required>
+                <div *ngIf="userName.valid || userName.touched || userForm.submitted">
+                  <div class="error-msg" *ngIf="userName.errors && userName.errors.required" class="text-danger">
+                    Name is required.
+                  </div>
+                  <div class="error-msg" *ngIf="userName.errors && userName.errors.pattern" class="text-danger">
+                    Enter valid Name.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-12 mt30">
+                <label class="profile-content">Email id</label>
+                <input type="text" class="mt5 custom-empty-input-box" [disabled]="adminData.email != null"
+                  [(ngModel)]="adminData.email" #email="ngModel" name="email"
+                  pattern="[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})" required>
+                <div *ngIf="email.valid || email.touched || userForm.submitted">
+                  <div class="error-msg" *ngIf="email.errors && email.errors.required" class="text-danger">
+                    Email is required.
+                  </div>
+                </div>
+              </div>
+              <div id="select-country" class="col-md-6 col-12 mt30">
+                <label class="profile-content">Country</label>
+                <ng-select id="country" class="mt5" [items]="countries" bindLabel="name" bindValue="name" name="country"
+                  [(ngModel)]="adminData.country" (change)="setCountryCode(adminData.country)" required></ng-select>
+                <div *ngIf="userForm.submitted">
+                  <div class="error-msg" *ngIf="adminData.country ==null" class="text-danger">
+                    Please select country
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-12 mt30">
+                <label class="profile-content">Phone</label>
+                <div id="input_box_container">
+                  <input (keypress)="numberOnly($event)" type="text" maxlength="15" class="mt5 custom-empty-input-box"
+                    [(ngModel)]="adminData.contactNo" id="phone" pattern="^[1-9][0-9]{9,14}$" name="contactNo"
+                    #contactNo="ngModel" required>
+                  <span id="country-code" class="country-code">{{adminData.countryCode}}</span>
+                </div>
+                <div *ngIf="contactNo.valid || contactNo.touched || userForm.submitted">
+                  <div class="error-msg" *ngIf="contactNo.errors && contactNo.errors.required" class="text-danger">
+                    Contact number is required.
+                  </div>
+                  <div class="error-msg" *ngIf="contactNo.errors && contactNo.errors.pattern" class="text-danger">
+                    Enter valid contact number.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-12 mt30">
+                <label class="profile-content">Current Password</label>
+                <input type="password" class="mt5 custom-empty-input-box" [(ngModel)]="adminData.password"
+                  #password="ngModel" name="password" required>
+                <div *ngIf="password.valid || password.touched || userForm.submitted">
+                  <div class="error-msg" *ngIf="password.errors && password.errors.required" class="text-danger">
+                    Enter new password.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-12 mt30">
+                <label class="profile-content">new Password</label>
+                <input type="password" class="mt5 custom-empty-input-box" [(ngModel)]="adminData.newPassword"
+                  #newPassword="ngModel" name="newPassword">
+                <div *ngIf="newPassword.valid || newPassword.touched || userForm.submitted">
+                  <div class="error-msg" *ngIf="newPassword.errors && newPassword.errors.required" class="text-danger">
+                    Enter confirmation password.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt30">
+              <div class="col-md-2 custom-col-3 col-4">
+                <button class="btn btn-black">Save</button>
+              </div>
+              <div class="col-md-2 col-4" style="line-height: 35px;">
+                <span class="profile-content pointer" style="color: #2F80ED;" (click)="setProfileData()">Cancel</span>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

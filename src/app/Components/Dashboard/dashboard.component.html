@@ -1,0 +1,147 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="dashboard-tile-box mt30">
+    <div *ngIf="dashboardData">
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-12">
+          <div class="repo-details-box">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="repo-details-box-title">Organizations</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="repo-details-box-number">
+                  {{dashboardData !== null && dashboardData !== undefined && dashboardData !== undefined ? dashboardData.organization.orgTotal : 0}}
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="repo-details-box-content">
+                      <span>
+                        This Month
+                      </span>
+                      <span>
+                        +{{dashboardData !== null && dashboardData !== undefined && dashboardData !== undefined ? dashboardData.organization.orgCurrentMonthTotal : 0}}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="repo-details-box-content">
+                      <span>
+                        This Week
+                      </span>
+                      <span>
+                        +{{dashboardData !== null && dashboardData !== undefined ? dashboardData.organization.orgCurrentWeekTotal : 0}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+          <div class="repo-details-box">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="repo-details-box-title">Users</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="repo-details-box-number">
+                  {{dashboardData !== null && dashboardData !== undefined ? dashboardData.users.userTotal: 0}}</div>
+              </div>
+              <div class="col-md-9">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="repo-details-box-content">
+                      <span>
+                        This Month
+                      </span>
+                      <span>
+                        +{{dashboardData !== null && dashboardData !== undefined ? dashboardData.users.userCurrentMonthTotal: 0}}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="repo-details-box-content">
+                      <span>
+                        This Week
+                      </span>
+                      <span>
+                        +{{dashboardData !== null && dashboardData !== undefined ? dashboardData.users.userCurrentWeekTotal: 0}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+          <div class="repo-details-box">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="repo-details-box-title">Plans</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="repo-details-box-content">
+                      <span>
+                        Startup
+                      </span>
+                      <span>
+                        {{dashboardData !== undefined && dashboardData !== null ?  dashboardData.plans.startupPlanTotal : 0}}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="repo-details-box-content">
+                      <span>
+                        Business
+                      </span>
+                      <span>
+                        {{dashboardData !== undefined && dashboardData !== null ? dashboardData.plans.businessPlanTotal : 0}}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="repo-details-box-content">
+                      <span>
+                        Enterprise
+                      </span>
+                      <span>
+                        {{dashboardData !== undefined && dashboardData !== null ? dashboardData.plans.enterprisePlanTotal : 0}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!dashboardData">
+      <div class="row mt30">
+        <div class="col-md-8 offset-md-2">
+          <div class="empty-data-text">
+            <img src="../../../assets/Images/empty-content.svg" alt="Data not available">
+          </div>
+        </div>
+      </div>
+      <div class="row mt10">
+        <div class="col-md-8 offset-md-2">
+          <div class="empty-data-text">No Results Found</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

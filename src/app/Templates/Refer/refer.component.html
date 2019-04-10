@@ -1,0 +1,34 @@
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div>
+      <div class="modal-header">
+        <img id="referModal" alt="" src="../../../assets/Icons/close_icon/close icon 14x14.svg"
+          class="close pointer pull-right" (click)="referModal.hide()" aria-label="Close">
+      </div>
+      <div class="modal-body" style="margin-top: -18px !important;">
+        <div>
+          <div id="dialog-sizes-name1" class="modal-title  custome-modal-header">Get your referral link</div>
+          <div class="modal-body-alignment">
+            <div *ngIf="link">
+              <div class="mt20">
+                <input type="text" class="input-field mt5" style="text-align: center; height: 45px;" [(ngModel)]="link"
+                  name="link" disabled>
+              </div>
+              <div class="custom-button mt20">
+                <button type="button-primary" class="btn btn-white" (click)="copyLink(link)">Copy</button>
+              </div>
+            </div>
+            <div *ngIf="!link">
+              <div *ngIf="!isLoaderStarted" class="custom-button mt20">
+                <button type="button-primary" class="btn btn-black" (click)="getReferralLink()">Get Link</button>
+              </div>
+              <div *ngIf="isLoaderStarted" class="text-align-center">
+                <img src="./../../../assets/Loader/loader.gif" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,420 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+    <div class="main-card-box text-align-left">
+        <div class="row text-align-center mb40">
+            <div class="col-md-12 mt30">
+                <div class="plan-header">
+                    Choose a plan that fits your needs.
+                </div>
+            </div>
+        </div>
+        <div class="row text-align-center">
+            <div class="col-md-12">
+                <div style="display:inline-flex;">
+                    <div [ngClass]="isYearlyActivated ? 'inActive-package' : 'active-package'">MONTHLY</div>
+                    <div class="switchToggle">
+                        <input type="checkbox" id="switch" [(ngModel)]="isYearlyActivated">
+                        <label for="switch">Toggle</label>
+                    </div>
+                    <div [ngClass]="isYearlyActivated ? 'active-package' : 'inActive-package'">YEARLY
+                        <span style="color: #3abdff;">(Save 20%)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-lg-3 mt40">
+                <div class="main-plan-box mt40">
+                    <div style="min-height:996px;">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="plan-box"><span class="plan-title-text">Startup</span></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="plan-pricing-box">
+                                    <div *ngIf="!isYearlyActivated" class="plan-text">Monthly</div>
+                                    <div *ngIf="isYearlyActivated" class="plan-text">Yearly</div>
+                                    <div class="plan-amount mt10">$0</div>
+                                    <div class="plan-unit mt5">per user /month</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="plan-box">
+                                    <div class="plan-limitation">Up to 2 Users</div>
+                                    <div class="plan-limitation mt5">Cloud access</div>
+                                    <div style="min-height:65px;">
+                                        <div class="mt20">
+                                        </div>
+                                    </div>
+                                    <div style="min-height:295px;">
+                                        <div class="plan-content mb15" style="margin-top: 22px !important;">Features
+                                            :</div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">PM Dashboard</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div class="card-width"><img src="./../assets/Icons/circle-checked.svg"
+                                                    alt=""></div>
+                                            <div class="ml10">Source Controls : Git Hub, Bit Bucket, Git
+                                                Lab, Git URL</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-check-black.svg" alt=""
+                                                    style="color:#D8D8D8"></div>
+                                            <div class="ml10" style="color:#D8D8D8">Fixes Recommendations</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Security</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Public and Private Repo</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Upto 2 projects</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div class="card-width"><img src="./../assets/Icons/circle-checked.svg"
+                                                    alt=""></div>
+                                            <div class="">File mentions for duplication blocks</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top:20px;">
+                                        <div class="plan-content mb15" style="color:#D8D8D8; margin-top: 15px;">Support
+                                            :</div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-check-black.svg" alt=""></div>
+                                            <div style="color:#D8D8D8" class="ml10">12x5</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-check-black.svg" alt=""
+                                                    style="color:#D8D8D8"></div>
+                                            <div class="ml10" style="color:#D8D8D8">Phone Support</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-check-black.svg" alt=""></div>
+                                            <div style="color:#D8D8D8" class="ml10">Email Support</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-check-black.svg" alt=""></div>
+                                            <div style="color:#D8D8D8" class="ml10">Chat Support</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-check-black.svg" alt=""></div>
+                                            <div style="color:#D8D8D8" class="ml10">Shared Customer Success</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-check-black.svg" alt=""></div>
+                                            <div style="color:#D8D8D8" class="ml10">Shared Account Manager</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mt40">
+                <div class="main-plan-box mt40">
+                    <div style="min-height:996px;">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="plan-box"><span class="plan-title-text">Business</span></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="plan-pricing-box">
+                                    <div *ngIf="!isYearlyActivated" class="plan-text">Monthly</div>
+                                    <div *ngIf="!isYearlyActivated" class="plan-amount mt10">$15</div>
+                                    <div *ngIf="isYearlyActivated" class="plan-text">Yearly</div>
+                                    <div *ngIf="isYearlyActivated" class="plan-amount mt10">$12</div>
+                                    <div class="plan-unit mt5">per user /month</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="plan-box">
+                                    <div class="plan-limitation">Up to 100 Users</div>
+                                    <div class="plan-limitation mt5">Cloud access</div>
+                                    <div style="min-height:66px;">
+                                        <div class="mt20">
+                                            <div class="note mt5">30 day trial<br />(No credit card
+                                                required)</div>
+                                        </div>
+                                    </div>
+                                    <div style="min-height:294px;">
+                                        <div class="plan-content mb15 mt10">Features :</div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">CxO and PM Dashboard</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div class="card-width"><img src="./../assets/Icons/circle-checked.svg"
+                                                    alt=""></div>
+                                            <div class="ml10">Source Controls : Git Hub, Bit Bucket, Git
+                                                Lab, Git URL</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""
+                                                    style="color:#D8D8D8"></div>
+                                            <div class="ml10">Fixes Recommendations</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Security</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Public and Private Repo</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Unlimited Projects</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div class="card-width"><img src="./../assets/Icons/circle-checked.svg"
+                                                    alt=""></div>
+                                            <div class="ml10">Full Code view to check duplication blocks
+                                                and coverage</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top:21px;">
+                                        <div class="plan-content mb15">Support :</div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">12x5</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-check-black.svg" alt=""
+                                                    style="color:#D8D8D8"></div>
+                                            <div class="ml10" style="color:#D8D8D8">Phone Support</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Email Support</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Chat Support</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Shared Customer Success</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Shared Account Manager</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mt40">
+                <div class="main-plan-box mt40">
+                    <div style="min-height:996px;">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="plan-box"><span class="plan-title-text">Enterprise</span></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="plan-pricing-box">
+                                    <div *ngIf="!isYearlyActivated" class="plan-text">Monthly</div>
+                                    <div *ngIf="!isYearlyActivated" class="plan-amount mt10">$10</div>
+                                    <div *ngIf="isYearlyActivated" class="plan-text">Yearly</div>
+                                    <div *ngIf="isYearlyActivated" class="plan-amount mt10">$7.5</div>
+                                    <div class="plan-unit mt5">per user /month</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="plan-box">
+                                    <div class="plan-limitation">Up to 1000 Users</div>
+                                    <div class="plan-limitation mt5">Cloud access</div>
+                                    <div style="min-height:64px;">
+                                        <div class="mt20">
+                                            <div class="note mt5">30 day trial<br />(No credit card
+                                                required)</div>
+                                        </div>
+                                    </div>
+                                    <div style="min-height:296px;">
+                                        <div class="plan-content mb15 mt10">Features :</div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">CxO and PM Dashboard</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div class="card-width"><img src="./../assets/Icons/circle-checked.svg"
+                                                    alt=""></div>
+                                            <div class="ml10">Source Controls : Git Hub, Bit Bucket, Git
+                                                Lab, Git URL</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""
+                                                    style="color:#D8D8D8"></div>
+                                            <div class="ml10">Fixes Recommendations</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Security</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Public and Private Repo</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Unlimited Projects</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div class="card-width"><img src="./../assets/Icons/circle-checked.svg"
+                                                    alt=""></div>
+                                            <div class="ml10">Full Code view to check duplication blocks
+                                                and coverage</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top:19px;">
+                                        <div class="plan-content mb15">Support :</div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">24x7</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""
+                                                    style="color:#D8D8D8"></div>
+                                            <div class="ml10">Phone Support</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Email Support</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Chat Support</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Dedicated Customer Success</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Dedicated Account Manager</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mt40">
+                <div class="main-plan-box mt40">
+                    <div style="min-height:996px;">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="plan-box"><span class="plan-title-text">Custom</span></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="plan-pricing-box">
+                                    <div class="custom-price mt30">Custom Price</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="plan-box">
+                                    <div class="plan-limitation">Unlimited Users</div>
+                                    <div class="plan-limitation mt5">Self hosted</div>
+                                    <div style="min-height:65px;">
+                                        <div class="mt20">
+                                        </div>
+                                    </div>
+                                    <div style="min-height:295px;">
+                                        <div class="plan-content mb15" style="margin-top: 21px;">Features :</div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">CxO and PM Dashboard</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div class="card-width"><img src="./../assets/Icons/circle-checked.svg"
+                                                    alt=""></div>
+                                            <div class="ml10">Source Controls : Git Hub, Bit Bucket, Git
+                                                Lab, Git URL</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""
+                                                    style="color:#D8D8D8"></div>
+                                            <div class="ml10">Fixes Recommendations</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Security</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Public and Private Repo</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Unlimited Projects</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div class="card-width"><img src="./../assets/Icons/circle-checked.svg"
+                                                    alt=""></div>
+                                            <div class="ml10">Full Code view to check duplication blocks
+                                                and coverage</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top:22px;">
+                                        <div class="plan-content mb15">Support :</div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">24x7</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""
+                                                    style="color:#D8D8D8"></div>
+                                            <div class="ml10">Phone Support</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Email Support</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Chat Support</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Dedicated Customer Success</div>
+                                        </div>
+                                        <div class="plan-content mb5" style="display:flex;">
+                                            <div><img src="./../assets/Icons/circle-checked.svg" alt=""></div>
+                                            <div class="ml10">Dedicated Account Manager</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

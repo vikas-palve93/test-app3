@@ -1,0 +1,138 @@
+.plan-header {
+    line-height: 46px;
+    font-size: 36px;
+    letter-spacing: 0.17px;
+    color: #1D2951;
+}
+
+.active-package {
+    line-height: 24px;
+    font-size: 10px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.17px;
+    color: #24292A;
+}
+
+.inActive-package {
+    line-height: 24px;
+    font-size: 10px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.17px;
+    color: #9B9B9B; 
+}
+
+.main-plan-box {
+    background: #FFFFFF;
+    border: 1px solid #D8D8D8;
+    box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.plan-box {
+    padding: 20px 30px;
+}
+
+.plan-title-text {
+    line-height: 28px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.17px;
+    color: #1D2951;
+}
+
+.plan-pricing-box {
+    background-color: rgb(243, 197, 197);
+    padding: 20px 30px;
+    height: 135px;
+}
+
+.plan-text {
+    font-weight: 700;
+    line-height: 20px;
+    font-size: 10px;
+    letter-spacing: 0.17px;
+    color: #9B9B9B;
+}
+
+.plan-amount {
+    line-height: 36px;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.83px;
+    color: #1D2951;
+}
+
+.plan-unit {
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.17px;
+    color: #1D2951;
+}
+
+.plan-limitation {
+    font-weight: 600;
+    line-height: 24px;
+    font-size: 14px;
+    letter-spacing: 0.17px;
+    color: #24292A;
+}
+
+.note {
+    line-height: 16px;
+    font-size: 12px;
+    color: #5B5B5B;
+}
+
+.plan-content {
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.17px;
+    color: #5B5B5B;
+    text-align: left;
+}
+
+.current-plan {
+    padding: 8px 0px;
+    line-height: 24px;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 0.17px;
+    color: #FFFFFF;
+    background: #3ABDFF;
+    border: 1px solid #3ABDFF;
+    box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.1);
+}
+
+.custom-price {
+    line-height: 36px;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 0.17px;
+    color: #1D2951;
+}
+
+.plan-footer {
+    background: #1D2951;
+    border-radius: 3px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 24px;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 0.17px;
+    color: #FFFFFF;
+    padding: 15px 0;
+}
+
+.disabled-text {
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.17px;
+    text-align: left;
+    color: #D8D8D8 !important;
+}

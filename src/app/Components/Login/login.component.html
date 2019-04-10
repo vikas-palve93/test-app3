@@ -1,0 +1,83 @@
+<div class="container-fluid">
+    <div class="card-box">
+        <div class="row">
+            <div class="col-md-6 custom-col-12 col-12 text-align-center">
+                <img class="img-fluid" src="../../../assets/Images/Login.svg" alt="" />
+                <div class="login-page-content-text">
+                    A powerful platform to analyze, measure and optimize your code.
+                </div>
+            </div>
+            <div class="col-md-6 custom-col-12 col-12 mt20-small">
+                <form name="loginForm" id="loginForm" #loginForm="ngForm"
+                    (ngSubmit)="!loginData.passError&& !errordata.isErrorData && loginForm.valid && login() || checkError()">
+                    <div>
+                        <div class="row mt40">
+                            <div class="col-md-4 d-md-block d-none pt10 pb10">
+                                <div class="gradient-bg-line-left"></div>
+                            </div>
+                            <div class="col-md-4 col-12 text-align-center">Login</div>
+                            <div class="col-md-4 d-md-block d-none pt10 pb10">
+                                <div class="gradient-bg-line-right"></div>
+                            </div>
+                        </div>
+                        <div class="row pt30">
+                            <div class="col-md-6 offset-md-3 col-12">
+                                <label class="input-field-lable">Username</label>
+                                <input type="text" class="mt5 input-field" (focus)="hideError()"
+                                    [(ngModel)]="loginData.email" #email="ngModel" name="email"
+                                    pattern="[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})"
+                                    required>
+                                <div id="email" *ngIf="email.valid || email.touched || loginForm.submitted">
+                                    <div class="error-msg" *ngIf="email.errors && email.errors.required"
+                                        class="text-danger">
+                                        Username is required.
+                                    </div>
+                                    <div class="error-msg" *ngIf="email.errors && email.errors.pattern"
+                                        class="text-danger">
+                                        Enter valid username.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt20">
+                            <div class="col-md-6 offset-md-3 col-12">
+                                <label class="input-field-lable">Password</label>
+                                <input type="password" class="mt5 input-field" (focus)="hideError()"
+                                    [(ngModel)]="loginData.superAdminPassword" #password="ngModel" name="password"
+                                    required>
+                                <div id="password" *ngIf="password.valid || password.touched || loginForm.submitted">
+                                    <div class="error-msg" *ngIf="password.errors && password.errors.required"
+                                        class="text-danger">
+                                        Password is required.
+                                    </div>
+                                    <div class="error-msg" *ngIf="password.errors && password.errors.pattern"
+                                        class="text-danger">
+                                        Password valid email.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9 col-12 pl30">
+                                <div *ngIf="!isLoaderStarted" class="custom-button mt20">
+                                    <button type="button-primary" class="btn btn-black">Login</button>
+                                </div>
+                                <div *ngIf="isLoaderStarted" style="text-align: center;">
+                                    <img src="./../../../assets/Loader/loader.gif" alt="">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div *ngIf="isError" class="row mt20">
+                            <div class="col-md-6 offset-md-3 col-12">
+                                <div class="error-msg text-danger">
+                                    You have enter wrong username or password.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

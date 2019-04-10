@@ -1,0 +1,182 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-top-color">
+  <a *ngIf="isLoginPage !== true" class="navbar-brand">
+    <img src="../../assets/logo/logo_beta.svg" alt="CODEGRIP" class="" />
+  </a>
+  <a *ngIf="isLoginPage === true" class="navbar-brand" target="_blank">
+    <img src="../../assets/logo/logo_beta.svg" alt="CODEGRIP" class="" />
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- ----------------------------------------Login Topbar starts---------------------------------------- -->
+
+  <!-- ---------------------------------Login Topbar ends--------------------------------- -->
+  <!-- ---------------------------------Main Topbar start--------------------------------- -->
+  <div *ngIf="isLoginPage !== true" class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="navbar-nav mr-auto">
+      <div class="topnav">
+        <a [class.active]="router.url.includes['dashboard']" class="navbar-text-cust" routerLink="/dashboard"
+          routerLinkActive="active">
+          <div class="navbar-nav-align">DASHBOARD</div>
+        </a>
+        <a *ngxPermissionsOnly="['ROLE_SUPER_ADMIN']" class="navbar-text-cust"
+          [class.active]="router.url.includes['settings/organization']" routerLink="/organizations"
+          routerLinkActive="active">
+          <div class="navbar-nav-align">ORGANIZATIONS</div>
+        </a>
+        <a *ngxPermissionsOnly="['ROLE_MARKETING']" class="navbar-text-cust"
+          [class.active]="router.url.includes['referred/users']" routerLink="/referred/users" routerLinkActive="active">
+          <div class="navbar-nav-align">REFERRED USERS</div>
+        </a>
+        <a *ngxPermissionsOnly="['ROLE_SUPER_ADMIN']" class="navbar-text-cust" routerLink="/roles"
+          routerLinkActive="active">
+          <div class="navbar-nav-align">ROLES</div>
+        </a>
+        <a *ngxPermissionsOnly="['ROLE_SUPER_ADMIN']" class="navbar-text-cust">
+          <div class="navbar-nav-align">REPORTS</div>
+        </a>
+      </div>
+    </div>
+    <form class="form-inline my-2 my-lg-0 mr-30">
+      <ul *ngxPermissionsOnly="['ROLE_MARKETING']" class="nav navbar-top-links navbar-right pull-right in">
+        <li class="nav-link  my-2 my-sm-0 mr-sm-2">
+          <button type="button-primary" class="btn btn-white" (click)="referModal.show()">Refer</button>
+        </li>
+      </ul>
+      <ul *ngxPermissionsOnly="['ROLE_SUPER_ADMIN']" class="nav navbar-top-links navbar-right pull-right in">
+        <li class="nav-link  my-2 my-sm-0 mr-sm-2" routerLink="/plans">
+          <img src="./../../../assets/Images/payment_success.svg" width="45" alt="" class="img-fluid pointer">
+        </li>
+      </ul>
+      <ul *ngxPermissionsOnly="['ROLE_SUPER_ADMIN']" class="nav navbar-top-links navbar-right pull-right in">
+        <li class="nav-link  my-2 my-sm-0 mr-sm-2" routerLink="/promo">
+          <img src="./../../../assets/Icons/folder-icon.svg" width="25" alt="" class="img-fluid pointer">
+        </li>
+      </ul>
+      <ul *ngxPermissionsOnly="['ROLE_SUPER_ADMIN']" class="nav navbar-top-links navbar-right pull-right in">
+        <li class="nav-link  my-2 my-sm-0 mr-sm-2" routerLink="/broadcast">
+          <img src="./../../../assets/Images/Offers/offer 44 X 44.svg" width="25" alt="" class="img-fluid pointer">
+      </ul>
+      <ul class="nav navbar-top-links navbar-right pull-right in">
+        <li class="dropdown open">
+          <a data-toggle="dropdown" href="javascript:void(0)" aria-expanded="true"
+            class="my-2 my-sm-0 pointer pr25 pl25">
+            <img src="../../../assets/Icons/notification_bell.svg" width="26" alt="" class="img-fluid pointer"
+              style="padding: 2px;" />
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-notification dropdown-box" style="top: 45px;">
+            <div class="notification-header-box">
+              <span class="notification-header">Notifications</span>
+              <span *ngIf="newNotificationsCount > 0" class="count animated">{{newNotificationsCount}}</span>
+            </div>
+            <div class="notification-list" *ngIf="notifications !== null">
+              <div *ngFor="let notification of notifications;let last = last;" [class.border-none]="last">
+                <div *ngIf="notification.isBroadcast"
+                  [className]="notification.status === 'UNREAD' ? 'unread-notification notification-box' : 'read-notification notification-box'"
+                  style="display: flex;"
+                  (click)="notificationPopupData(notification);notificationModal.show();updateNotificationDetails(notification.id, 'true', 'false')">
+                  <div>
+                    <img class="mt10" src="../../../assets/Icons/notitfication_icon/broadcast.svg" alt="" />
+                  </div>
+                  <div class="ml20" style="display: grid;">
+                    <span class="text-wrap"
+                      [class.unread-title]="notification.status === 'UNREAD'">{{notification.title}}</span>
+                    <span class="notification-text">{{notification.message}}</span>
+                  </div>
+                </div>
+                <div *ngIf="!notification.isBroadcast"
+                  [className]="notification.status === 'UNREAD' ? 'unread-notification notification-box pointer' : 'read-notification notification-box pointer'"
+                  style="display: flex;"
+                  (click)="navigateToPage(notification.destinationPage); updateNotificationDetails(notification.id, 'true', 'false')">
+                  <div>
+                    <img *ngIf="notification.imageId === 1" class="mt10" alt=""
+                      src="../../../assets/Icons/notitfication_icon/broadcast.svg">
+                    <img *ngIf="notification.imageId === 2" class="mt10" alt=""
+                      src="../../../assets/Icons/notitfication_icon/added_to_new_project.svg">
+                    <img *ngIf="notification.imageId === 3" class="mt10" alt=""
+                      src="../../../assets/Icons/notitfication_icon/new_user_joined.svg">
+                    <img *ngIf="notification.imageId === 4" class="mt10" alt=""
+                      src="../../../assets/Icons/notitfication_icon/share.svg">
+                    <img *ngIf="notification.imageId === 5" class="mt10" alt=""
+                      src="../../../assets/Icons/notitfication_icon/user_suspended.svg">
+                    <img *ngIf="notification.imageId === 6" class="mt10" alt=""
+                      src="../../../assets/Icons/notitfication_icon/payment_failed.svg">
+                  </div>
+                  <div class="ml20" style="display: grid;">
+                    <span class="text-wrap"
+                      [class.unread-title]="notification.status === 'UNREAD'">{{notification.title}}</span>
+                    <span class="text-wrap">{{notification.message}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="notification-footer" *ngIf="isViewAllAvailable">
+                <span class="pointer" (click)="viewAllNotifications()">View All</span>
+              </div>
+            </div>
+            <div class="notification-list" *ngIf="notifications === null">
+              <div class="notification-box" style="border: none;">
+                <div style="text-align: center;">
+                  <div class="mt40">
+                    <img src="../../../assets/Icons/no_notifications.svg" alt="" height="100" width="100">
+                  </div>
+                  <div class="empty-notification-text mt20 mb40">No notifications yet.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="nav navbar-top-links navbar-right pull-right in">
+        <li class="nav-link  my-2 my-sm-0 mr-sm-2" routerLink="/admin/profile">
+          <img src="../../assets/Icons/setting.svg" width="25" alt="" class="img-fluid pointer">
+      </ul>
+      <ul class="nav navbar-top-links navbar-right pull-right in">
+        <li class="dropdown open">
+          <a data-toggle="dropdown" href="javascript:void(0)" aria-expanded="true">
+            <span>
+              <img src="{{loggedInUserData.profilePictureUrl}}" alt="" height="35" width="35"
+                style="border-radius: 50%; padding: 2px;" class=" my-2 my-sm-0 ml25 mr-sm-2 pointer" />
+            </span>
+            <span>
+              <img src="./../../../assets/Icons/arrow_down.svg" width="10" height="5" alt="">
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-notification dropdown-box"
+            style="top:45px; width: 312px !important; right: -33% !important;">
+            <div class="user-profile-header-box" style="display: flex;">
+              <div style="margin: auto 0px;">
+                <img class="" src="{{loggedInUserData.profilePictureUrl}}" alt="" height="65" width="65"
+                  style="border-radius: 50%" />
+              </div>
+              <div class="ml30" style="display: grid;margin: 15px 0px;">
+                <span
+                  class="text-wrap user-profile-header">{{loggedInUserData.name !== null ? loggedInUserData.name : loggedInUserData.email !== null ? loggedInUserData.email : ''}}</span>
+                <span class="text-wrap user-profile-sub-header">Codegrip</span>
+                <span class="text-wrap user-profile-sub-header">{{role}}</span>
+                <span class="text-wrap  user-profile-sub-header pointer"
+                  style="text-decoration-line: underline; color: #3DA5D9;" routerLink="/admin/profile">Edit
+                  Profile</span>
+              </div>
+            </div>
+            <div class="company-list-box border-top" (click)="logout()">
+              <div style="display: flex;">
+                <div style="padding: 0 8px;">
+                  <img width="20" src="../../assets/Icons/logout.svg" alt="" />
+                </div>
+                <div style="display: grid;padding: 0 14px;">
+                  <span class="text-wrap user-profile-header pl25" style="font-size: 14px">Logout</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </form>
+  </div>
+  <!-- ---------------------------------Main Topbar ends--------------------------------- -->
+</nav>
+<div bsModal #referModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <app-refer [referModal]="referModal" [link]="link"></app-refer>
+</div>

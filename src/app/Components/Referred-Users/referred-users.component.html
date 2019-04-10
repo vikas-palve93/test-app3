@@ -1,0 +1,77 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-4 mt30">
+      <div id="input_search_container">
+        <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="searchText">
+        <img id="input_search" src="../../assets/Icons/search.svg" alt="" width="25" height="25" class="search_icon">
+      </div>
+    </div>
+  </div>
+  <div class="table-data mt20">
+    <div class="row">
+      <div class="col-12 table-responsive" style="padding-bottom: 130px;">
+        <table class="table table-striped" [mfData]="data" #mf="mfDataTable">
+          <thead>
+            <tr>
+              <th style="width: 40%">
+                <mfDefaultSorter by="adminName">
+                  <span class="table-header-text">Name</span>
+                  <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                </mfDefaultSorter>
+              </th>
+              <th style="width: 40%">
+                <mfDefaultSorter by="adminEmail">
+                  <span class="table-header-text">Email</span>
+                  <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                </mfDefaultSorter>
+              </th>
+              <th style="width: 20%">
+                <mfDefaultSorter by="orgName">
+                  <span class="table-header-text ml5">Orgnization Name</span>
+                  <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                </mfDefaultSorter>
+              </th>
+              <th style="width: 30%">
+                <mfDefaultSorter by="joinDate">
+                  <span class="table-header-text">Joined On</span>
+                  <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                </mfDefaultSorter>
+              </th>
+              <th style="width: 10%">
+                <mfDefaultSorter by="planName">
+                  <span class="table-header-text">Plan</span>
+                  <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                </mfDefaultSorter>
+              </th>
+            </tr>
+          </thead>
+          <tbody *ngIf="data !== null">
+            <tr *ngFor="let org of mf.data | fileFilter: {orgName: searchText}; let i=index">
+              <td class="table-content-text pointer">{{org.adminName !== null ? org.adminName : ''}}</td>
+              <td class="table-content-text pointer">{{org.adminEmail !== null ? org.adminEmail : ''}}</td>
+              <td id="orgName" class="table-content-text pointer">{{org.orgName !== null ? org.orgName : ''}}</td>
+              <td class="table-content-text pointer">{{org.joinDate !== null ? org.joinDate : '' }}</td>
+              <td class="table-content-text pointer">{{org.planName !== null ? org.planName : ''}}</td>
+            </tr>
+            <tr *ngIf="(mf.data | fileFilter: {orgName: searchText}).length === 0"
+              style="border-bottom: none !important">
+              <td colspan="9" class="text-align-center" style="border-bottom: none">
+                <img src="../../../../assets/Images/empty-content.svg" alt="">
+                <br />
+                <span class="empty-data-text">No Results Found</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row" *ngIf="data === null">
+          <div class="col-md-12 text-align-center mt30">
+            <img src="../../../../assets/Images/empty-content.svg" alt="">
+            <br />
+            <span class="empty-data-text">No Results Found</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

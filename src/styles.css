@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+@import './index.css';
+@import '~bootstrap/dist/css/bootstrap.css';
+@import './../src/assets/Fonts/open-sans.css';
+@import './override.css';
+/* @import '~bootstrap-select/dist/css/bootstrap-select.min.css'; */
+@import "~@ng-select/ng-select/themes/material.theme.css";
+ 

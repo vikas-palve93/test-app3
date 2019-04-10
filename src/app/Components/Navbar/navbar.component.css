@@ -1,0 +1,223 @@
+/* Style the navigation bar */
+.navbar {
+    width: 100%;
+    background-color: #555;
+  }
+    
+  /* Current/active navbar link */
+  .active {
+    border-bottom: 5px solid #1D2951 !important;
+    color: #1D2951 !important;
+    box-shadow: none !important;
+  }
+    
+  @media screen and (max-width: 500px) {
+    .navbar a {
+      float: none;
+      display: block;
+    }
+  }
+  .dropdown-item {
+    display: table-cell;  
+  }
+    
+  @media screen and (max-width: 768px) {
+    .active-navbar {
+      border-bottom: none !important;
+      color: #1D2951 !important;
+      box-shadow: none !important;
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    .active-navbar {
+      border-bottom: 5px solid #1D2951 !important;
+      color: #1D2951 !important;
+      box-shadow: none !important;
+    }
+  }
+  
+  .navbar-nav > li {
+    float: left;
+    position: relative;
+  }
+  
+  .user-dropdown-content {
+    line-height: 24px;
+    font-size: 14px;
+    letter-spacing: 0.17px;
+    color: #000000 !important;
+    font-weight: 600 !important;
+  }
+  
+  .notifications-dropdown-header{
+    line-height: 24px;
+    font-size: 16px;
+    letter-spacing: 0.17px;
+    color: #1D2951;
+    font-weight: 600;
+  }
+  
+  .notification-text {
+    max-height: 48px !important;
+    overflow: hidden !important;
+    white-space: pre-wrap !important;
+    text-overflow: ellipsis !important;
+  }
+  
+  .dropdown-item:hover, .dropdown-item:focus {
+    background-color: #ffffff !important;
+  }
+  
+  .topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 18px 0px;
+    margin-right: 60px !important;
+    text-decoration: none;
+    font-size: 17px;
+    border-bottom: 3px solid transparent;
+  }
+  .navbar-nav {
+    margin-bottom: -16px !important;
+  }
+  .navbar-nav-align {
+    margin-bottom: 3px;
+    margin-top: -6px;
+  }
+  .count{
+    position: static;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    line-height: 24px;
+    margin-left: 20px;
+    font-size: 14px;
+    vertical-align: middle;
+    background: #D93025;
+    border-radius: 14px;
+    color: #ffffff;
+  }
+  
+  .notification-header-box {
+    padding: 15px 0 !important;
+    text-align: center !important;
+    background: #F4F6FF !important;
+    border-bottom: 1px solid #1D2951;
+    border-radius: 4px 4px 0 0 !important;
+  }
+  
+  .notification-header {
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    font-size: 16px;
+    letter-spacing: 0.17px;
+    color: #1D2951;
+  }
+  
+  .notification-footer {
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    font-size: 14px;
+    letter-spacing: 0.17px;
+    color: #1D2951;
+    background: #F4F6FF;
+    padding: 15px 0;
+    text-align: center;
+    border-top: 1px solid #1D2951;
+    border-radius: 0 0 4px 4px;
+  }
+  
+  .notification-box {
+    padding: 10px 30px !important;
+    border-bottom: 1px solid #9B9B9B;
+  }
+  
+  
+  .notification-time {
+    font-size: 12px;
+    color: #9B9B9B;
+  }
+  
+  
+  .user-profile-header{
+    font-weight: 400;
+    line-height: 24px;
+    font-size: 16px;
+    letter-spacing: 0.17px;
+    color: #000000;
+    text-transform: capitalize;
+  }
+  
+  .user-profile-sub-header {
+    font-weight: 400;
+    line-height: 24px;
+    font-size: 12px;
+    letter-spacing: 0.17px;
+    color: #000000;
+    text-transform: capitalize;
+  }
+  
+  .user-profile-header-box{
+    padding: 0px 40px 0px 40px !important;
+    text-align: left !important;
+    background: #F4F6FF !important;
+    border-bottom: 1px solid #D8D8D8;
+    border-radius: 4px 4px 0 0 !important;
+  }
+  
+  .company-list-box {
+    padding: 15px 40px !important;
+    cursor: pointer;
+  }
+  
+  .logout{
+    padding: 10px;
+  }
+  
+  .border-top{
+    border-top: 1px solid #D8D8D8;
+  }
+  
+  .border-bottom{
+    border-bottom: 1px solid #D8D8D8;
+  }
+  
+  .border-top-none {
+    border-top: none;
+  }
+  
+  .navbar-light .navbar-nav .active a::after {
+    border-bottom: 5px solid #5bc0eb;
+    bottom: -10px;
+    content: " ";
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+  
+  .btn-white {
+    height: 30px !important;
+    box-sizing: content-box !important;
+    border-radius: 30px !important;
+    min-width: 70px !important;
+  }
+  
+  @media screen and (min-width: 768px) {  
+    .mr-30 {
+      margin-top: -60px !important;
+      margin-left: 50% !important;
+  }
+  }
+  
+  @media screen and (min-width: 813px) {  
+    .mr-30 {
+      margin-top: 0px !important;
+      margin-left: 0% !important;
+  }
+  }
+
+  

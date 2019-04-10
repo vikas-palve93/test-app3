@@ -1,0 +1,181 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-4 mt30">
+      <div id="input_search_container">
+        <input type="text" class="form-control" placeholder="Search by orgnization name" [(ngModel)]="searchText">
+        <img id="input_search" src="../../assets/Icons/search.svg" alt="" width="25" height="25" class="search_icon">
+      </div>
+    </div>
+    <div class="col-12 col-md-5 mt30">
+      <div id="startDatepickerContainer" class="start-datepicker datepicker-container">
+        <ng-datepicker id="start-datepicker" [(ngModel)]="filters.startDate" position="bottom-right"
+          [options]="startDateOptions" (click)="setEndDateOptions(filters.startDate)"></ng-datepicker>
+      </div>
+      <div id="endDatepickerContainer" class="end-datepicker datepicker-container">
+        <ng-datepicker id="end-datepicker" [(ngModel)]="filters.endDate" position="bottom-right"
+          [options]="{minDate:filters.startDate,maxDate:endDateOptions.maxDate,placeholder: 'End date',displayFormat: 'MM-DD-YYYY',maxYear:endDateOptions.maxYear,barTitleFormat:endDateOptions.barTitleFormat,addClass:endDateOptions.addClass,dayNamesFormat:endDateOptions.dayNamesFormat }">
+        </ng-datepicker>
+      </div>
+    </div>
+    <div class="col-12 col-md-1 mt30">
+      <button class="btn btn-black" (click)="getOrganizationListByFilter(1)">Apply</button>
+    </div>
+    <div class="col-12 col-md-1 mt30">
+      <button class="btn btn-black" (click)="getOrganizationList(1)">Clear</button>
+    </div>
+  </div>
+  <div class="table-data mt20">
+    <div class="row">
+      <div class="col-12 table-responsive" style="padding-bottom: 130px;">
+        <table class="table table-striped" [mfData]="data" #mf="mfDataTable">
+          <thead>
+            <tr>
+              <th style="width: 20%">
+                <mfDefaultSorter by="name">
+                  <span class="table-header-text ml5">Orgnization Name</span>
+                  <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                </mfDefaultSorter>
+              </th>
+              <th style="width: 30%">
+                <mfDefaultSorter by="joinedDate">
+                  <span class="table-header-text">Joined On</span>
+                  <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                </mfDefaultSorter>
+              </th>
+              <th style="width: 10%">
+                <mfDefaultSorter by="plan">
+                  <span class="table-header-text">Plan</span>
+                  <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                </mfDefaultSorter>
+              </th>
+              <th style="width: 10%">
+                <mfDefaultSorter by="nextBillingDate">
+                  <span class="table-header-text">Next Billing</span>
+                  <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                </mfDefaultSorter>
+              </th>
+              <th style="width: 40%">
+                <mfDefaultSorter by="usersCount">
+                  <span class="table-header-text">Users</span>
+                  <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                </mfDefaultSorter>
+              </th>
+              <th style="width: 40%">
+                <mfDefaultSorter by="repo">
+                  <span class="table-header-text">Repos</span>
+                  <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                </mfDefaultSorter>
+              </th>
+              <th style="width: 40%">
+                <mfDefaultSorter by="adminName">
+                  <span class="table-header-text">Admin Name</span>
+                  <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                </mfDefaultSorter>
+              </th>
+              <th style="width: 40%">
+                <mfDefaultSorter by="email">
+                  <span class="table-header-text">Email</span>
+                  <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                </mfDefaultSorter>
+              </th>
+              <th style="width: 40%">
+                <mfDefaultSorter by="status">
+                  <span class="table-header-text">Status</span>
+                  <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                </mfDefaultSorter>
+              </th>
+              <th style="width: 10%">
+
+              </th>
+            </tr>
+          </thead>
+          <tbody *ngIf="data !== null" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="1"
+            (scrolled)="onScroll()" [scrollWindow]="true">
+            <tr *ngFor="let org of mf.data | fileFilter: {orgName: searchText}; let i=index">
+              <td id="orgName" class="table-content-text orgName pointer" (click)="orgznizationDetails(org)">
+                {{org.orgName !== null ? org.orgName : '-'}}</td>
+              <td class="table-content-text orgName pointer" (click)="orgznizationDetails(org)">
+                {{org.joinDate !== null ? org.joinDate : '-' }}</td>
+              <td class="table-content-text orgName pointer" (click)="orgznizationDetails(org)">
+                {{org.planName !== null ? org.planName : '-'}}</td>
+              <td class="table-content-text orgName pointer" (click)="orgznizationDetails(org)">
+                {{org.nextBillingDate !== null ? org.nextBillingDate : '-'}}</td>
+              <td class="table-content-text orgName pointer" (click)="orgznizationDetails(org)">
+                {{org.totalUsers !== null ? org.totalUsers : '0'}}</td>
+              <td class="table-content-text orgName pointer" (click)="orgznizationDetails(org)">
+                {{org.totalRepos !== null ? org.totalRepos : '0'}}</td>
+              <td class="table-content-text orgName pointer" (click)="orgznizationDetails(org)">
+                {{org.adminName !== null ? org.adminName : '-'}}</td>
+              <td class="table-content-text orgName pointer" (click)="orgznizationDetails(org)">
+                {{org.adminEmail !== null ? org.adminEmail : '-'}}</td>
+              <td class="table-content-text orgName pointer" *ngIf="org.companyStatus && !org.isLoaderStarted">
+                {{org.companyModel.isActive === true ? "Active" : "Suspended"}}</td>
+              <td class="table-content-text" *ngIf="!org.companyStatus">-</td>
+              <td class="text-align-right">
+                <div id="orgPopoverActions">
+                  <div class="pointer" style="float: right;padding: 5px 0px 0px 20px;" [popover]="popTemplate"
+                    placement="bottom" [outsideClick]="true"
+                    (click)="currentOrganization=org; currentIdexNumber=i;currentOrgName=org.orgName; deleteOrgObject=org.companyModel;">
+                    <img src="../../../../assets/Icons/group.svg" alt="" class="pb5">
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr *ngIf="(mf.data | fileFilter: {orgName: searchText}).length === 0"
+              style="border-bottom: none !important">
+              <td colspan="9" class="text-align-center" style="border-bottom: none">
+                <img src="../../../../assets/Images/empty-content.svg" alt="">
+                <br />
+                <span class="empty-data-text">No Results Found</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row" *ngIf="data === null">
+          <div class="col-md-12 text-align-center mt30">
+            <img src="../../../../assets/Images/empty-content.svg" alt="">
+            <br />
+            <span class="empty-data-text">No Results Found</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div bsModal #deleteConfirmationMode="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-sizes-name1">
+  <app-delete-confirmation [deleteConfirmationMode]="deleteConfirmationMode" [currentOrgName]="currentOrgName"
+    [deleteOrgObject]="deleteOrgObject" [isOrgDeleteConfirmation]="isOrgDeleteConfirmation"
+    (orgEvent)="getOrganizationList()"></app-delete-confirmation>
+</div>
+<ng-template #popTemplate>
+  <ul style="list-style: none; padding: 0px;margin: 0px;">
+    <li *ngIf="currentOrganization.companyModel.isActive" class="sub-menu-item"
+      (click)="updateOrganization(currentOrganization, false, currentIdexNumber)">
+      <span class="pr10">
+        <img width="20" height="20" src="../../assets/Icons/ban.svg" alt="" />
+      </span>
+      <span class="pl10">
+        Suspend
+      </span>
+    </li>
+    <li *ngIf="!currentOrganization.companyModel.isActive" class="sub-menu-item"
+      (click)="updateOrganization(currentOrganization, true, currentIdexNumber)">
+      <span class="pr10">
+        <img width="20" height="20" src="../../assets/Icons/ban.svg" alt="" />
+      </span>
+      <span class="pl10">
+        Active
+      </span>
+    </li>
+    <li class="sub-menu-item" (click)="onClickPopoverClose();deleteConfirmationMode.show();">
+      <span class="pr10">
+        <img width="20" height="20" src="../../assets/Icons/dropdown_delete.svg" alt="" />
+      </span>
+      <span class="pl10">
+        Delete
+      </span>
+    </li>
+  </ul>
+</ng-template>

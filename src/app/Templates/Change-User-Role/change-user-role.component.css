@@ -1,0 +1,28 @@
+.image-box {
+    padding: 20px 15px;
+}
+
+.image-box-username {
+    font-weight: normal;
+    line-height: 16px;
+    font-size: 16px;
+    letter-spacing: 0.17px;
+    color: #24292A;
+    padding-top: 10px;
+}
+
+.image-box-background{
+    background: #F7F7F7;
+    padding: 15px;
+}
+
+.img-style {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+.profile-content {
+    color: #24292A !important;
+    padding: 35px 0 15px 0;
+}

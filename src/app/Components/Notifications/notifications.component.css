@@ -1,0 +1,14 @@
+.header-alignment {
+    display: flex; 
+    padding: 15px 50px
+}
+
+.row-alignment {
+    display: flex;
+    border-bottom: 1px solid #D8D8D8;
+    text-align: left
+}
+
+.col-md-9 {
+    padding-right: 0 !important;
+}

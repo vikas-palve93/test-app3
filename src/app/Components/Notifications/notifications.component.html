@@ -1,0 +1,98 @@
+<app-navbar></app-navbar>
+<div class="container-fluid" style="padding:0;">
+  <div class="notifications-title-box" style="padding:0;">
+    <div *ngIf="notificationsData && notificationsData.length > 0">
+      <div class="row">
+        <div col-md-12>
+          <div class="header-alignment">
+            <div class="pt10">
+              <img height="24" width="20" src="../../../assets/Icons/notification_bell.svg" alt="">
+            </div>
+            <div class="ml25 notification-header">
+              Notifications
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [className]="notification.status === 'UNREAD' ? 'unread-notification pt20' : 'read-notification pt20'"
+        *ngFor="let notification of notificationsData; let indexNumber = index">
+        <div style="margin: 0 30px">
+          <div class="row">
+            <div class="col-md-9">
+              <div class="row-alignment">
+                <div class="pr20">
+                  <img *ngIf="notification.imageId === 1" src="../../../assets/Icons/notitfication_icon/broadcast.svg"
+                    alt="">
+                  <img *ngIf="notification.imageId === 2"
+                    src="../../../assets/Icons/notitfication_icon/added_to_new_project.svg" alt="">
+                  <img *ngIf="notification.imageId === 3"
+                    src="../../../assets/Icons/notitfication_icon/new_user_joined.svg" alt="">
+                  <img *ngIf="notification.imageId === 4" src="../../../assets/Icons/notitfication_icon/share.svg"
+                    alt="">
+                  <img *ngIf="notification.imageId === 5"
+                    src="../../../assets/Icons/notitfication_icon/user_suspended.svg" alt="">
+                  <img *ngIf="notification.imageId === 6"
+                    src="../../../assets/Icons/notitfication_icon/payment_failed.svg" alt="">
+                </div>
+                <div *ngIf="!notification.isBroadcast" class="pointer" style="display:table-cell"
+                  (click)="navigateToPage(notification.destinationPage); updateNotificationDetails(notification.id,'true','false')">
+                  <div class="notification-row-header" [class.unread-title]="notification.status === 'UNREAD'">
+                    {{notification.title}}
+                  </div>
+                  <div class="notification-row-content">
+                    {{notification.message}}
+                  </div>
+                </div>
+                <div *ngIf="notification.isBroadcast" class="pointer" style="display:table-cell"
+                  (click)="updateNotificationDetails(notification.id)">
+                  <div class="notification-row-header" [class.unread-title]="notification.status === 'UNREAD'">
+                    {{notification.title}}
+                  </div>
+                  <div class="notification-row-content" [class.unread-message]="notification.status === 'UNREAD'">
+                    {{notification.message}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="notification.isBroadcast" class="col-md-2" style="border-bottom: 1px solid #D8D8D8;">
+              <br /><button type="button-primary" class="btn btn-black"
+                (click)="navigateToPage('settings/plans'); updateNotificationDetails(notification.id, 'true', 'false')">Upgrade
+                Plan</button>
+            </div>
+            <div *ngIf="!notification.isBroadcast" class="col-md-2" style="border-bottom: 1px solid #D8D8D8;"></div>
+            <div class="col-md-1 text-align-right" style="border-bottom: 1px solid #D8D8D8">
+              <img src="../../../assets/Icons/close_icon/close icon 14x14.svg" alt="" class="pointer"
+                (click)="updateNotificationDetails(notification.id, 'true', 'true')">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="(!notificationsData || notificationsData.length === 0) && !isLoaderStarted">
+      <div class="row mt30">
+        <div class="col-md-8 offset-md-2">
+          <div class="empty-data-text">
+            <img src="../../../assets/Images/empty-content.svg" alt="Data not available">
+          </div>
+        </div>
+      </div>
+      <div class="row mt10">
+        <div class="col-md-8 offset-md-2">
+          <div class="empty-data-text">No Results Found</div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isLoaderStarted">
+      <div class="row mt50">
+        <div class="offset-3 col-md-6 col-sm-6 mt15 text-align-center">
+          <img src="../../../assets/Loader/loader.gif" alt="" />
+        </div>
+      </div>
+      <div class="row mt20">
+        <div class="offset-3 col-md-6 col-sm-6 mt15">
+          <div class="empty-data-text">Please wait...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

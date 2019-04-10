@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+<div class="topbar-bg-color">
+  <div class="row">
+    <div class="col-md-12 pt10">
+      <span class="pl20" style="font-size: 19px;">
+        < </span> <Span class="pointer" routerLink="/organizations">
+          Back To Companies
+      </Span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <span class="pl20 org-title">
+        {{currentSelectedOrgName}}
+      </span>
+    </div>
+  </div>
+  <div>
+    <div class="nav nav-tabs ml20 pt15" id="nav-tab" role="tablist" style="border: none; ">
+      <div class="nav-item nav-link tab-title" style="box-shadow: none" id="organization"
+        routerLink="/settings/organization" routerLinkActive="active">Organization</div>
+      <div class="nav-item nav-link tab-title" style="box-shadow: none" id="admin" routerLink="/settings/admin"
+        routerLinkActive="active">Admin Profile</div>
+      <div class="nav-item nav-link tab-title" style="box-shadow: none" id="user" routerLink="/settings/users"
+        routerLinkActive="active">Users</div>
+    </div>
+  </div>

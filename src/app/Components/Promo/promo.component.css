@@ -1,0 +1,8 @@
+input {
+    padding: 7px 12px !important;
+    font-size: 14px !important;
+}
+
+.input-field:focus, .input-field:active {
+    box-shadow: none !important;
+}

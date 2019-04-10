@@ -1,0 +1,173 @@
+<app-settings-menu></app-settings-menu>
+<div class="container-fluid">
+  <div class="main-card-box text-align-left">
+    <div class="page-title-box">
+      <div class="row">
+        <div class="col-md-2 mt10">
+          <div class="page-title">
+            <span *ngIf="totalUsersCount === 1">{{totalUsersCount}} User</span>
+            <span *ngIf="totalUsersCount !== 1">{{totalUsersCount}} Users</span>
+          </div>
+        </div>
+        <div class="col-md-4 mt10">
+          <div id="input_search_container">
+            <input type="text" class="form-control" placeholder="Search by user name" [(ngModel)]="searchText">
+            <img id="input_search" src="../../assets/Icons/search.svg" alt="" height="25" width="25"
+              class="search_icon">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="table-data mt20">
+      <div class="row">
+        <div class="col-12 table-responsive" style="padding-bottom: 150px;">
+          <table class="table table-striped" [mfData]="data" #mf="mfDataTable">
+            <thead>
+              <tr>
+                <th style="width: 20%">
+                  <mfDefaultSorter by="role">
+                    <span class="table-header-text ml5">Role</span>
+                    <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                  </mfDefaultSorter>
+                </th>
+                <th style="width: 30%">
+                  <mfDefaultSorter by="name">
+                    <span class="table-header-text">User Name</span>
+                    <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                  </mfDefaultSorter>
+                </th>
+                <th style="width: 30%">
+                  <mfDefaultSorter by="name">
+                    <span class="table-header-text">Email Id</span>
+                    <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                  </mfDefaultSorter>
+                </th>
+                <th style="width: 40%">
+                  <mfDefaultSorter by="emailId">
+                    <span class="table-header-text">Status</span>
+                    <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                  </mfDefaultSorter>
+                </th>
+                <th style="width: 10%"></th>
+              </tr>
+            </thead>
+            <tbody *ngIf="data !== null">
+              <tr *ngFor="let user of mf.data | fileFilter: {name: searchText}; let i=index">
+                <td class="table-content-text" *ngIf="user.roles">
+                  <span *ngIf="user.company[0].userCompanyRole === 'ROLE_ADMIN'">Admin</span>
+                  <span *ngIf="user.company[0].userCompanyRole === 'ROLE_USER'">User</span>
+                </td>
+                <td class="table-content-text" *ngIf="!user.roles">User</td>
+                <td class=" table-content-text" *ngIf="user.name">{{user.name}}</td>
+                <td class="table-content-text" *ngIf="!user.name"></td>
+                <td class="table-content-text" *ngIf="user.email">{{user.email}}</td>
+                <td class="table-content-text" *ngIf="user.emailId">{{user.emailId}}<span class="ml30"
+                    style="color: #9B9B9B;">(Invited)</span></td>
+                <td class="table-content-text" *ngIf="!user.email && !user.emailId"></td>
+                <td class="table-content-text" *ngIf="user.deactivated">Deactive</td>
+                <td class="table-content-text" *ngIf="!user.deactivated">Active</td>
+                <td class="text-align-right">
+                  <div id="userPopoverActions" *ngIf="user.id !== userId">
+                    <div *ngIf="!user.isInvited" class="pointer" style="float: right;padding: 5px 0px 0px 20px;"
+                      [popover]="popTemplate" placement="bottom" [outsideClick]="true"
+                      (click)="currentUser=user;indexNumber=i;role=user.company[0].userCompanyRole; currentUserName=user.name">
+                      <img src="../../../../assets/Icons/group.svg" alt="" class="pb5">
+                    </div>
+                    <div *ngIf="user.isInvited" class="pointer" style="float: right;padding: 5px 0px 0px 20px;"
+                      [popover]="inviteTemplate" placement="bottom" [outsideClick]="true"
+                      (click)="currentUser=user;indexNumber=i">
+                      <img *ngIf="user.isInvited" src="../../../../assets/Icons/group.svg" alt="" class="pb5">
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr *ngIf="(mf.data | fileFilter: {name: searchText}).length === 0"
+                style="border-bottom: none !important">
+                <td colspan="9" class="text-align-center" style="border-bottom: none">
+                  <img src="../../../../assets/Images/empty-content.svg" alt="">
+                  <br />
+                  <span class="empty-data-text">No Results Found</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row" *ngIf="data === null">
+            <div class="col-md-12 text-align-center mt30">
+              <img src="../../../../assets/Images/empty-content.svg" alt="">
+              <br />
+              <span class="empty-data-text">No Results Found</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div bsModal #changeUserRoleModel="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-sizes-name1">
+  <app-change-user-role [changeUserRoleModel]="changeUserRoleModel" [currentUser]="currentUser" [role]="role"
+    (userEvent)="getUserList()"></app-change-user-role>
+</div>
+<div bsModal #deleteConfirmationMode="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-sizes-name1">
+  <app-delete-confirmation [deleteConfirmationMode]="deleteConfirmationMode" [currentUser]="currentUser"
+    [currentUserName]="currentUserName" [isOrgDeleteConfirmation]="isOrgDeleteConfirmation" (orgEvent)="getUserList()">
+  </app-delete-confirmation>
+</div>
+<ng-template #popTemplate>
+  <ul style="list-style: none; padding: 0px;margin: 0px;">
+    <li *ngIf="data.length > 1" class="sub-menu-item" (click)="changeUserRoleModel.show();onClickPopoverClose()">
+      <span class="pr10">
+        <img width="20" height="20" src="../../assets/Icons/dropdown_change.svg" alt="" class="popover-icon" />
+      </span>
+      <span class="pl10">
+        Change Role
+      </span>
+    </li>
+    <li *ngIf="data.length === 1 && role === 'ROLE_USER'" class="sub-menu-item"
+      (click)="changeUserRoleModel.show();onClickPopoverClose()">
+      <span class="pr10">
+        <img width="20" height="20" src="../../assets/Icons/dropdown_change.svg" alt="" class="popover-icon" />
+      </span>
+      <span class="pl10">
+        Change Role
+      </span>
+    </li>
+    <li *ngIf="!currentUser.deactivated" class="sub-menu-item" (click)="updateUser(currentUser, true, false)">
+      <span class="pr10">
+        <img width="20" height="20" src="../../assets/Icons/ban.svg" alt="" />
+      </span>
+      <span class="pl10">
+        Deactivate
+      </span>
+    </li>
+    <li *ngIf="currentUser.deactivated" class="sub-menu-item" (click)="updateUser(currentUser, false, false)">
+      <span class="pr10">
+        <img width="20" height="20" src="../../assets/Icons/ban.svg" alt="" />
+      </span>
+      <span class="pl10">
+        Activate
+      </span>
+    </li>
+    <li class="sub-menu-item" (click)="deleteConfirmationMode.show();onClickPopoverClose()">
+      <span class="pr10">
+        <img width="20" height="20" src="../../assets/Icons/dropdown_delete.svg" alt="" />
+      </span>
+      <span class="pl10">
+        Delete
+      </span>
+    </li>
+  </ul>
+</ng-template>
+<ng-template #inviteTemplate>
+  <ul style="list-style: none; padding: 0px;margin: 0px;">
+    <li class="sub-menu-item" (click)="cancelInvite(currentUser, indexNumber)">
+      <span class="pr10">
+        <img width="20" height="20" src="../../assets/Icons/invite-cancel.svg" alt="" class="popover-icon" />
+      </span>
+      <span class="pl10">
+        Cancel
+      </span>
+    </li>
+  </ul>
+</ng-template>

@@ -1,0 +1,128 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="main-card-box text-align-left">
+    <div class="page-title-box">
+      <div class="row">
+        <div class="col-md-2 mt10">
+          <div class="page-title">
+            <span *ngIf="totalUsersCount === 1">{{totalUsersCount}} User</span>
+            <span *ngIf="totalUsersCount !== 1">{{totalUsersCount}} Users</span>
+          </div>
+        </div>
+        <div class="col-md-4 mt10">
+          <div id="input_search_container">
+            <input type="text" class="form-control" placeholder="Search by user name" [(ngModel)]="searchText">
+            <img id="input_search" src="../../assets/Icons/search.svg" alt="" height="25" width="25"
+              class="search_icon">
+          </div>
+        </div>
+        <div class="col-md-2 mt10">
+          <button class="btn btn-black" (click)="addUserUsModal.show();">Add Users</button>
+        </div>
+      </div>
+    </div>
+    <div class="table-data mt20">
+      <div class="row">
+        <div class="col-12 table-responsive" style="padding-bottom: 150px;">
+          <table class="table table-striped" [mfData]="data" #mf="mfDataTable">
+            <thead>
+              <tr>
+                <th style="width: 20%">
+                  <mfDefaultSorter by="role">
+                    <span class="table-header-text ml5">Role</span>
+                    <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                  </mfDefaultSorter>
+                </th>
+                <th style="width: 30%">
+                  <mfDefaultSorter by="name">
+                    <span class="table-header-text">User Name</span>
+                    <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                  </mfDefaultSorter>
+                </th>
+                <th style="width: 40%">
+                  <mfDefaultSorter by="emailId">
+                    <span class="table-header-text">Email Id</span>
+                    <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                  </mfDefaultSorter>
+                </th>
+                <th style="width: 10%"></th>
+              </tr>
+            </thead>
+            <tbody *ngIf="data !== null">
+              <tr *ngFor="let user of mf.data | fileFilter: {name: searchText}; let i=index">
+                <td class="table-content-text">
+                  <span *ngIf="user.userRole">{{user.userRole.name}}</span>
+                  <span *ngIf="!user.userRole"></span>
+                </td>
+                <td class=" table-content-text" *ngIf="user.name">{{user.name}}</td>
+                <td class="table-content-text" *ngIf="!user.name"></td>
+                <td class="table-content-text" *ngIf="user.email">{{user.email}}</td>
+                <td class="table-content-text" *ngIf="!user.email && !user.email"></td>
+                <td class="text-align-right">
+                  <div id="userPopoverActions">
+                    <div class="pointer" style="float: right;padding: 5px 0px 0px 20px;" [popover]="popTemplate"
+                      placement="bottom" [outsideClick]="true" (click)="currentUser=user;role=user.userRole.name">
+                      <img src="../../../../assets/Icons/group.svg" alt="" class="pb5">
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr *ngIf="(mf.data | fileFilter: {name: searchText}).length === 0"
+                style="border-bottom: none !important">
+                <td colspan="9" class="text-align-center" style="border-bottom: none">
+                  <img src="../../../../assets/Images/empty-content.svg" alt="">
+                  <br />
+                  <span class="empty-data-text">No Results Found</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row" *ngIf="data === null">
+            <div class="col-md-12 text-align-center mt30">
+              <img src="../../../../assets/Images/empty-content.svg" alt="">
+              <br />
+              <span class="empty-data-text">No Results Found</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div bsModal #addUserUsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-sizes-name1">
+  <app-add-user [addUserUsModal]="addUserUsModal" [roles]="roles" (roleEvent)="getUserlistWithRole()"></app-add-user>
+</div>
+<div bsModal #changeRoleModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-sizes-name1">
+  <app-change-role [changeRoleModal]="changeRoleModal" [currentUser]="currentUser" [roles]="roles" [role]="role"
+    (userEvent)="getUserlistWithRole()"></app-change-role>
+</div>
+<ng-template #popTemplate>
+  <ul style="list-style: none; padding: 0px;margin: 0px;">
+    <li class="sub-menu-item" (click)="changeRoleModal.show();onClickPopoverClose()">
+      <span class="pr10">
+        <img width="20" height="20" src="../../assets/Icons/dropdown_change.svg" alt="" class="popover-icon" />
+      </span>
+      <span class="pl10">
+        Change Role
+      </span>
+    </li>
+    <li class="sub-menu-item" (click)="updateUser(currentUser, false, false)">
+      <span class="pr10">
+        <img width="20" height="20" src="../../assets/Icons/ban.svg" alt="" />
+      </span>
+      <span class="pl10">
+        Activate
+      </span>
+    </li>
+    <li class="sub-menu-item" (click)="updateUser(currentUser, false, true, indexNumber)">
+      <span class="pr10">
+        <img width="20" height="20" src="../../assets/Icons/dropdown_delete.svg" alt="" />
+      </span>
+      <span class="pl10">
+        Delete
+      </span>
+    </li>
+  </ul>
+</ng-template>

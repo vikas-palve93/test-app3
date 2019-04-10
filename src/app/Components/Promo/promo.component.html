@@ -1,0 +1,134 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <form name="contactForm" id="contactForm" #contactForm="ngForm"
+        (ngSubmit)="!newPromoData.passError&& !errordata.isErrorData && contactForm.valid && savePromoDetails() || checkError()">
+        <div>
+          <div class="offset-md-2 col-md-8 mt20">
+            <label class="input-field-lable">Promo Code</label>
+            <input type="text" class="input-field mt5" [(ngModel)]="newPromoData.promoCode" #promoCode="ngModel"
+              name="promoCode" required>
+            <div id="oCode" *ngIf="promoCode.valid || promoCode.touched || contactForm.submitted">
+              <div class="error-msg" *ngIf="promoCode.errors && promoCode.errors.required" class="text-danger">
+                Promo code is required.
+              </div>
+            </div>
+          </div>
+          <div class="offset-md-2 col-md-8 mt20">
+            <label class="input-field-lable">Message Title</label>
+            <input type="text" class="input-field mt5" [(ngModel)]="newPromoData.promoTitle" #msgTitle="ngModel"
+              name="msgTitle" required>
+            <div id="oMessage" *ngIf="msgTitle.valid || msgTitle.touched ||contactForm.submitted">
+              <div class="error-msg" *ngIf="msgTitle.errors && msgTitle.errors.required" class="text-danger">
+                Message title is required.
+              </div>
+            </div>
+          </div>
+          <div class="offset-md-2 col-md-8 mt20">
+            <label class="input-field-lable">Description</label>
+            <textarea class="form-control mt10" style="height: 100px !important;" rows="5"
+              [(ngModel)]="newPromoData.promoDescription" #message="ngModel" name="message" required></textarea>
+            <div id="oDesc" *ngIf="message.valid || message.touched || contactForm.submitted">
+              <div class="error-msg" *ngIf="message.errors && message.errors.required" class="text-danger">
+                Message is required.
+              </div>
+            </div>
+          </div>
+          <div class="offset-md-2 col-md-8 mt20">
+            <label class="input-field-lable">Dates</label>
+          </div>
+          <div class="col-md-12" style="display: flex">
+            <div class="offset-md-2 col-md-3 mt10" style="padding-left: 1px;">
+              <ng-datepicker id="start-datepicker" [(ngModel)]="newPromoData.startDate" position="bottom-right"
+                [options]="startDateOptions" (click)="setEndDateOptions(dates.startDate)" name="startDate"
+                #startDate="ngModel" required></ng-datepicker>
+              <div id="oStartDate" *ngIf="startDate.valid || startDate.touched || contactForm.submitted">
+                <div class="error-msg" *ngIf="startDate.errors && startDate.errors.required" class="text-danger">
+                  Start date is required.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 mt10">
+              <ng-datepicker id="end-datepicker" [(ngModel)]="newPromoData.endDate" position="bottom-right"
+                [options]="{minDate:newPromoData.startDate, placeholder: 'End date',displayFormat: 'MM-DD-YYYY',maxYear:endDateOptions.maxYear,barTitleFormat:endDateOptions.barTitleFormat,addClass:endDateOptions.addClass,dayNamesFormat:endDateOptions.dayNamesFormat }"
+                name="endDate" #endDate="ngModel" required></ng-datepicker>
+              <div id="oEndDate" *ngIf="endDate.valid || endDate.touched || contactForm.submitted">
+                <div class="error-msg" *ngIf="endDate.errors && endDate.errors.required" class="text-danger">
+                  End date is required.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12" style="display: flex">
+          <div class="offset-md-4 col-md-2 mt20">
+            <button type="button-primary" class="btn btn-black">Save</button>
+          </div>
+          <div class="col-md-2 mt20">
+            <span class="profile-content pointer" style="color: #2F80ED;" (click)="resetFormData()">Cancel</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="table-data mt50">
+    <div class="row">
+      <div class="col-md-12 table-responsive" style="padding-bottom: 150px;">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>
+                #
+              </th>
+              <th>
+                Code
+              </th>
+              <th>
+                Title
+              </th>
+              <th>
+                Description
+              </th>
+              <th>
+                Start Date
+              </th>
+              <th>
+                End Date
+              </th>
+              <th>
+                Status
+              </th>
+            </tr>
+          </thead>
+          <tbody *ngIf="promoData !== null && promoData.length > 0">
+            <tr *ngFor="let promo of promoData; let i=index">
+              <td class="table-content-text">
+                {{i+1}}
+              </td>
+              <td class=" table-content-text" *ngIf="promo.promoCode">{{promo.promoCode}}</td>
+              <td class="table-content-text" *ngIf="!promo.promoCode"></td>
+              <td class="table-content-text" *ngIf="promo.promoTitle">{{promo.promoTitle}}</td>
+              <td class="table-content-text" *ngIf="!promo.promoTitle"></td>
+              <td class="table-content-text" *ngIf="promo.promoDescription">{{promo.promoDescription}}</td>
+              <td class="table-content-text" *ngIf="!promo.promoDescription"></td>
+              <td class="table-content-text" *ngIf="promo.startDate">{{promo.startDate | date: 'yyyy-dd-MM'}}</td>
+              <td class="table-content-text" *ngIf="!promo.startDate"></td>
+              <td class="table-content-text" *ngIf="promo.endDate">{{promo.endDate | date: 'yyyy-dd-MM'}}</td>
+              <td class="table-content-text" *ngIf="!promo.endDate"></td>
+              <td class="table-content-text" *ngIf="promo.status">{{promo.status}}</td>
+              <td class="table-content-text" *ngIf="!promo.status"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row" *ngIf="promoData === null || promoData.length === 0 || promoData === 'undefined'">
+          <div class="col-md-12 text-align-center mt30">
+            <img src="../../../../assets/Images/empty-content.svg" alt="">
+            <br />
+            <span class="empty-data-text">No Results Found</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

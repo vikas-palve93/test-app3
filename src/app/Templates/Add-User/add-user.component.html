@@ -1,0 +1,64 @@
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div>
+      <div class="modal-header">
+        <img id="addUserUsModal" src="../../../assets/Icons/close_icon/close icon 14x14.svg" alt=""
+          class="close pointer pull-right" (click)="addUserUsModal.hide();resetAddUserData();" aria-label="Close">
+      </div>
+      <div class="modal-body" style="margin-top: -18px !important;">
+        <div>
+          <div id="dialog-sizes-name1" class="modal-title  custome-modal-header">Add User To Codegrip</div>
+          <div class="modal-body-alignment">
+            <form name="addUserForm" id="addUserForm" #addUserForm="ngForm"
+              (ngSubmit)="!userData.passError&& !errordata.isErrorData && addUserForm.valid && addUser() || checkError()">
+              <div>
+                <div class="mt40">
+                  <label class="input-field-lable">Name</label>
+                  <input (keypress)="characterOnly($event)" type="text" class="input-field mt5"
+                    [(ngModel)]="userData.name" #fname="ngModel" name="fname" pattern="[a-zA-Z/s ]*" required>
+                  <div id="name" *ngIf="fname.valid || fname.touched || addUserForm.submitted">
+                    <div class="error-msg" *ngIf="fname.errors && fname.errors.required" class="text-danger">
+                      Name is required.
+                    </div>
+                    <div class="error-msg" *ngIf="fname.errors && fname.errors.pattern" class="text-danger">
+                      Enter valid Name.
+                    </div>
+                  </div>
+                </div>
+                <div class="pt30">
+                  <label class="input-field-lable">Email id</label>
+                  <input type="text" class="mt5 input-field" [(ngModel)]="userData.email" #email="ngModel" name="email"
+                    pattern="[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})" required>
+                  <div *ngIf="email.valid || email.touched || addUserForm.submitted">
+                    <div class="error-msg" *ngIf="email.errors && email.errors.required" class="text-danger">
+                      Email is required.
+                    </div>
+                    <div class="error-msg" *ngIf="email.errors && email.errors.pattern" class="text-danger">
+                      Enter valid email.
+                    </div>
+                  </div>
+                </div>
+                <div class="mt30">
+                  <label class="profile-content">Role</label>
+                  <ng-select id="role" class="mt5" [items]="roles" bindLabel="name" bindValue="id" name="country"
+                    [(ngModel)]="userData.roleId" aria-required="true" required></ng-select>
+                  <div *ngIf="addUserForm.submitted">
+                    <div class="error-msg" *ngIf="userData.roleId == null" class="text-danger">
+                      Please select role
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!isLoaderStarted" class="custom-button mt20">
+                <button type="button-primary" class="btn btn-black">Add</button>
+              </div>
+              <div *ngIf="isLoaderStarted" style="text-align: center;">
+                <img src="./../../../assets/Loader/loader.gif" alt="">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+<app-settings-menu></app-settings-menu>
+<div class="container-fluid">
+  <div class="main-card-box text-align-left">
+    <div class="page-title-box">
+      <div class="row">
+        <div class="col-md-3 mt10">
+          <div class="page-title">
+            <span>Purchase Details</span>
+          </div>
+        </div>
+      </div>
+      <div class="row mt15">
+        <div class="col-12">
+          <div class="information-box" style="text-align: left;">
+            <div class="row">
+              <div class="col-md-5 custom-col-12 col-12 plpr5">
+                <span class="information-box-content">Current Plan : </span>
+                <span class="information-box-value">{{activePlan.currenPlanName}}</span>
+              </div>
+              <div class="col-md-4 custom-col-6 col-12 plpr5">
+                <span class="information-box-content">Start Date : </span>
+                <span class="information-box-value">{{activePlan.startDate}}</span>
+              </div>
+              <div class="col-md-3 custom-col-6 col-12 plpr5">
+                <span class="information-box-content">End Date : </span>
+                <span class="information-box-value">{{activePlan.endDate}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5 custom-col-6 col-12 plpr5">
+                <span class="information-box-content">Next Payment : </span>
+                <span *ngIf="activePlan.nextPaymentAmount"
+                  class="information-box-value">${{activePlan.nextPaymentAmount}}</span>
+                <span *ngIf="!activePlan.nextPaymentAmount" class="information-box-value">$0</span>
+              </div>
+              <div class="col-md-4 custom-col-6 col-12 plpr5">
+                <span class="information-box-content">Next Billing Date : </span>
+                <span class="information-box-value">{{activePlan.nextBillingDate}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="table-data mt20">
+      <div class="row">
+        <div class="col-12 table-responsive" style="padding-bottom: 130px;">
+          <table class="table table-striped" style="min-width: 1075px;" [mfData]="data" #mf="mfDataTable">
+            <thead>
+              <tr>
+                <th style="width: 15%">
+                  <mfDefaultSorter by="paymentDate">
+                    <span class="table-header-text">Payment Date</span>
+                    <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                  </mfDefaultSorter>
+                </th>
+                <th style="width: 15%">
+                  <mfDefaultSorter by="plan">
+                    <span class="table-header-text">Plan Name</span>
+                    <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                  </mfDefaultSorter>
+                </th>
+                <th style="width: 10%">
+                  <mfDefaultSorter by="users">
+                    <span class="table-header-text">Users</span>
+                    <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                  </mfDefaultSorter>
+                </th>
+                <th style="width: 10%">
+                  <mfDefaultSorter by="amount">
+                    <span class="table-header-text">Amount</span>
+                    <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                  </mfDefaultSorter>
+                </th>
+                <th style="width: 15%">
+                  <mfDefaultSorter by="transactionId">
+                    <span class="table-header-text">Transaction Id</span>
+                    <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                  </mfDefaultSorter>
+                </th>
+                <th style="width: 35%">
+                  <mfDefaultSorter by="billingPeriod">
+                    <span class="table-header-text">Billing Period</span>
+                    <img src="../../../assets/Icons/sort.svg" width="25" alt="">
+                  </mfDefaultSorter>
+                </th>
+              </tr>
+            </thead>
+            <tbody *ngIf="data !== null">
+              <tr *ngFor="let purchase of mf.data">
+                <td class="table-content-text">{{purchase.paymentDate}}</td>
+                <td class="table-content-text">{{purchase.planName}}</td>
+                <td class="table-content-text">{{purchase.userCount}}</td>
+                <td class="table-content-text" *ngIf="purchase.amount">${{purchase.amount}}</td>
+                <td class="table-content-text" *ngIf="!purchase.amount">$0</td>
+                <td class="table-content-text">{{purchase.transactionId}}</td>
+                <td class="table-content-text">
+                  <div style="float: left;">{{purchase.billingPeriod}}</div>
+                  <div class="download-link" style="float: right;"><a href="{{purchase.invoiceLink}}">Download</a></div>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="data === null">
+              <tr style="text-align: center;border-bottom: none !important;">
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row" *ngIf="data === null">
+            <div class="col-md-12 text-align-center mt30">
+              <img src="../../../../assets/Images/empty-content.svg" alt="">
+              <br />
+              <span class="empty-data-text">No Results Found</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <form name="broadcastForm" id="broadcastForm" #broadcastForm="ngForm" (ngSubmit)="!broadcastData.passError&& !errordata.isErrorData && broadcastForm.valid && saveBroadcastDetails() || checkError()">        
+        <div >
+        <div class="offset-md-2 col-md-8 mt20">
+          <label class="input-field-lable">Title</label>
+          <input type="text" maxlength="140" class="input-field mt5" [(ngModel)]="broadcastData.title"  #title="ngModel" name="title" required>
+          <div id="btitle" *ngIf="title.valid || title.touched || broadcastForm.submitted">
+              <div class="error-msg" *ngIf="title.errors && title.errors.required" class="text-danger">
+                  Title is required.
+              </div>
+          </div>
+          </div>  
+          <div class="offset-md-2 col-md-8 mt20">
+            <label class="input-field-lable">Message</label>
+            <textarea maxlength="500" class="form-control mt10" style="height: 100px !important;" rows="5" [(ngModel)]="broadcastData.message" #message="ngModel" name="message" required></textarea>
+            <div id="bmessage" *ngIf="message.valid || message.touched || broadcastForm.submitted">
+                <div class="error-msg" *ngIf="message.errors && message.errors.required" class="text-danger">
+                    Message is required.
+                </div>
+            </div>
+          </div>
+          <div class="offset-md-2 col-md-8 mt20">
+              <label class="input-field-lable">Redirect URL</label><br/>
+          </div>
+          <div class="offset-md-2 col-md-8 mt20" style="display:flex">
+              <div class="col-md-4 mt20">
+                <input id="portalURL" type="radio" name="gender" value="true" checked (click)="changeRadio(true)"> Within the portal
+              </div>
+              <div class="offset-md-1 col-md-4 mt20">
+                <input id="externalURL" type="radio" name="gender" value="false"(click)="changeRadio(false)"> External URL
+              </div>
+          </div>  
+          <div *ngIf="isRadio" class="offset-md-2 col-md-8 mt20">
+              <div class="mt30">
+                  <ng-select id="burl" class="mt5"  [items]="urlData" bindLabel="url" bindValue="url" name="url" [(ngModel)]="broadcastData.url" aria-required="true" required></ng-select>
+                    <div *ngIf="broadcastForm.submitted" >
+                      <div class="error-msg" *ngIf="broadcastData.url == null" class="text-danger">
+                          Please select redirection URL.
+                  </div>
+              </div>  
+                </div>
+          </div>   
+          <div *ngIf="!isRadio" class="offset-md-2 col-md-8 mt20">
+              <input type="text" class="input-field mt5" [(ngModel)]="broadcastData.url"  #url="ngModel" name="url" pattern="^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$" required>
+              <div id="burl" *ngIf="url.valid || url.touched || broadcastForm.submitted">
+                  <div class="error-msg" *ngIf="url.errors && url.errors.required" class="text-danger">
+                      URL is required.
+                  </div>
+                  <div class="error-msg" *ngIf="url.errors && url.errors.pattern" class="text-danger">
+                      Enter valid URL.
+                    </div>
+              </div>
+              </div>   
+              <div class="offset-md-2 col-md-8 mt20">
+                  <label class="input-field-lable">Select Role</label><br/>
+              </div>
+              <div class="offset-md-2 col-md-8 mt20" style="display:flex">
+                  <div class="col-md-4 mt20">
+                    <input id="onlyAdmin" type="radio" name="role" value="true" checked (click)="whomeToSendNotification(true)"> Only Admin
+                  </div>
+                  <div class="offset-md-1 col-md-4 mt20">
+                    <input id="adminAndUsers" type="radio" name="role" value="false"(click)="whomeToSendNotification(false)"> Admin And Users
+                  </div>
+              </div>       
+        </div>
+        <div class="col-md-12" style="display: flex">
+          <div class="offset-md-4 col-md-2 mt20">
+            <button type="button-primary" class="btn btn-black">Send</button>
+          </div>
+          <div class="col-md-2 mt20">
+            <span  class="profile-content pointer" style="color: #2F80ED;" (click)="setFormData()">Cancel</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="table-data mt50">
+      <div class="row">
+        <div class="col-md-12 table-responsive" style="padding-bottom: 150px;">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>
+                  #
+                </th>
+                <th>
+                  Title
+                </th>
+                <th>
+                  Message
+                </th>
+                <th>
+                  URL
+                </th>
+                <th>
+                  Date & Time
+                </th>
+              </tr>
+            </thead>
+            <tbody *ngIf="data !== null">
+              <tr *ngFor="let user of data; let i=index">
+                <td class="table-content-text">
+                  {{i+1}}
+                </td>
+                <td class=" table-content-text" *ngIf="user.title">{{user.title}}</td>
+                <td class=" table-content-text" *ngIf="!user.title"></td>
+                <td class=" table-content-text" *ngIf="user.message">{{user.message}}</td>
+                <td class="table-content-text" *ngIf="!user.message"></td>
+                <td class="table-content-text" *ngIf="user.url">{{user.url}}</td>
+                <td class="table-content-text" *ngIf="!user.url"></td>
+                <td class="table-content-text" *ngIf="user.createdAt">{{user.createdAt | date: 'yyyy-dd-MM'}}</td>
+                <td class="table-content-text" *ngIf="!user.createdAt"></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row" *ngIf="data === null  || data.length === 0">
+            <div class="col-md-12 text-align-center mt30">
+              <img src="../../../../assets/Images/empty-content.svg" alt="">
+              <br />
+              <span class="empty-data-text">No Results Found</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
